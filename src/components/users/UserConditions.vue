@@ -1,16 +1,10 @@
 <template>
   <el-form :inline="true" :model="queryParams" size="small">
     <el-form-item label="用户名">
-      <el-input
-        v-model="queryParams.username"
-        placeholder="用户名"
-      ></el-input>
+      <el-input v-model="queryParams.username" placeholder="用户名"></el-input>
     </el-form-item>
     <el-form-item label="姓名">
-      <el-input
-        v-model="queryParams.name"
-        placeholder="用户名"
-      ></el-input>
+      <el-input v-model="queryParams.name" placeholder="用户名"></el-input>
     </el-form-item>
     <el-form-item label="状态">
       <el-select v-model="queryParams.status" placeholder="全部">
@@ -19,21 +13,14 @@
         <el-option label="无效" value="0"></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="创建时间 由">
+    <el-form-item>
       <el-date-picker
-        v-model="queryParams.beginDate"
+        v-model="duration"
+        type="daterange"
         value-format="yyyy-MM-dd"
-        type="date"
-        placeholder="选择日期"
-      >
-      </el-date-picker>
-    </el-form-item>
-    <el-form-item label="到">
-      <el-date-picker
-        v-model="queryParams.endDate"
-        value-format="yyyy-MM-dd"
-        type="date"
-        placeholder="选择日期"
+        range-separator="至"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
       >
       </el-date-picker>
     </el-form-item>
@@ -47,7 +34,11 @@
 import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
-
+  data () {
+    return {
+      duration: ''
+    }
+  },
   computed: {
     ...mapState('users', ['queryParams'])
   },
@@ -55,6 +46,13 @@ export default {
     ...mapMutations('users', ['initializeCreateDialog', 'setQueryParams']),
     ...mapActions('users', ['getTableData']),
     async submit () {
+      if (this.duration) {
+        this.queryParams.beginDate = this.duration[0]
+        this.queryParams.endDate = this.duration[1]
+      } else {
+        this.queryParams.beginDate = ''
+        this.queryParams.endDate = ''
+      }
       this.setQueryParams(this.queryParams)
       await this.getTableData()
     }

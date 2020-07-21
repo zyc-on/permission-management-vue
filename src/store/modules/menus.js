@@ -1,4 +1,4 @@
-import { fetchMapper } from '../../api/menu'
+import { fetchAllPermissions } from '../../api/menu'
 
 import commonMutations from '../utils/commonMutations'
 import commomActions from '../utils/commonActions'
@@ -15,32 +15,31 @@ export default {
       limit: 10
     },
     dialogVisible: false,
-    mapper: [],
     tempItem: {},
     prefix: 'menu',
-    treeData: []
+    permissions: []
   },
   mutations: {
     ...commonMutations,
-    setMapper (state, mapper) {
-      state.mapper = mapper
-    },
-    setTreeData (state) {
-      state.treeData = resolveTreeData(state.mapper)
+    setPermissions (state, permissions) {
+      state.permissions = permissions
     }
   },
   actions: {
     ...commomActions,
 
-    async getMapper ({ commit }) {
-      const res = await fetchMapper()
-      commit('setMapper', res.data.data)
+    async getAllPermissions ({ commit }) {
+      const res = await fetchAllPermissions()
+      commit('setPermissions', res.data.data)
     }
   },
   getters: {
-    mapIdToName: state => id => {
-      const item = state.mapper.find(e => e.id === id)
-      return item && item.name ? item.name : ''
+    mapParentName: state => parentId => {
+      const item = state.tableData.find(e => e.id === parentId)
+      return item && item.name ? item.name : '无'
+    },
+    treeData: state => {
+      return resolveTreeData(state.permissions)
     }
   }
 }

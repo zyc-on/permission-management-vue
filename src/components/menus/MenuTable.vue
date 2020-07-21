@@ -25,7 +25,7 @@
         :formatter="parentFormatter"
       >
       </el-table-column>
-      <el-table-column prop="type" label="菜单类型" width="90" align="center">
+      <el-table-column prop="type" :formatter="typeFormatter" label="菜单类型" width="90" align="center">
       </el-table-column>
       <el-table-column
         prop="identification"
@@ -82,13 +82,16 @@ export default {
   },
   computed: {
     ...mapState('menus', ['tableData', 'total', 'queryParams', 'prefix']),
-    ...mapGetters('menus', ['mapIdToName'])
+    ...mapGetters('menus', ['mapParentName'])
   },
   methods: {
     ...mapMutations('menus', ['initializeCreateDialog']),
     ...mapActions('menus', ['getTableData', 'deleteItemById', 'initializeUpdateDialog']),
-    parentFormatter (row, cloumn) {
-      return this.mapIdToName(row.id)
+    parentFormatter (row) {
+      return this.mapParentName(row.parentId)
+    },
+    typeFormatter (row) {
+      return ['目录', '菜单', '功能'].find((e, index) => index === row.type)
     }
   }
 }

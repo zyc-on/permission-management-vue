@@ -27,7 +27,8 @@ import {
   Radio,
   MessageBox,
   Message,
-  Tree
+  Tree,
+  Divider
 } from 'element-ui'
 
 Vue.use(Button)
@@ -54,6 +55,7 @@ Vue.use(DatePicker)
 Vue.use(Dialog)
 Vue.use(Radio)
 Vue.use(Tree)
+Vue.use(Divider)
 
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$message = Message

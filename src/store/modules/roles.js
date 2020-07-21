@@ -11,7 +11,7 @@ export default {
       limit: 10
     },
     dialogVisible: false,
-    setPermissionDialogVisible: false,
+    rolePermissionDialogVisible: false,
     tempItem: {},
     prefix: 'role',
     targetRole: {
@@ -21,13 +21,13 @@ export default {
   },
   mutations: {
     ...commonMutations,
-    closeSetPermissionDialog (state) {
-      state.setPermissionDialogVisible = false
+    closeRolePermissionDialog (state) {
+      state.rolePermissionDialogVisible = false
     },
-    initializeSetPermissionDialog (state, row) {
+    initializeRolePermissionDialog (state, row) {
       state.targetRole.id = row.id
       state.targetRole.name = row.name
-      state.setPermissionDialogVisible = true
+      state.rolePermissionDialogVisible = true
     }
   },
   actions: {

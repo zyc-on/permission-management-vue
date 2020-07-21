@@ -2,8 +2,7 @@ import { fetchTableData, deleteItem, createItem, fetchItemById, updateItem } fro
 
 export default {
   async getTableData ({ state, commit, dispatch }) {
-    // TODO-ERROR
-    state.mapper && await dispatch('getMapper')
+    // state.mapper && await dispatch('getMapper')
 
     const res = await fetchTableData(state.prefix, state.queryParams)
     console.log(res)

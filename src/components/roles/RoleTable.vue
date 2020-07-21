@@ -62,7 +62,7 @@
             @click="deleteItem(scope.row.name, scope.row.id)"
             >删除</el-button
           >
-          <el-button size="mini" @click="initializeSetPermissionDialog(scope.row)">设置角色权限</el-button>
+          <el-button size="mini" @click="initializeRolePermissionDialog(scope.row)">设置角色权限</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -92,7 +92,7 @@ export default {
     ...mapState('roles', ['tableData', 'total', 'queryParams', 'prefix'])
   },
   methods: {
-    ...mapMutations('roles', ['initializeCreateDialog', 'initializeSetPermissionDialog']),
+    ...mapMutations('roles', ['initializeCreateDialog', 'initializeRolePermissionDialog']),
     ...mapActions('roles', [
       'getTableData',
       'deleteItemById',

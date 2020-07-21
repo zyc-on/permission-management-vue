@@ -14,19 +14,21 @@ export default {
       status: ''
     },
     dialogVisible: false,
-    setRoleDialogVisible: false,
+    userRoleDialogVisible: true,
     tempItem: {},
     prefix: 'user'
   },
   mutations: {
-    ...commonMutations
+    ...commonMutations,
+    closeUserRoleDialog (state) {
+      state.userRoleDialogVisible = false
+    }
   },
   actions: {
     ...commonActions,
     async toggleUserStatus ({ state, dispatch }, user) {
       user.status = user.status === 1 ? 0 : 1
       await dispatch('updateItem', user)
-      console.log('更新用户状态')
     }
   }
 }

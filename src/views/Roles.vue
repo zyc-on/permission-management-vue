@@ -3,7 +3,7 @@
     <role-conditions />
     <role-table />
     <role-dialog />
-    <set-permission-dialog />
+    <role-permission-dialog />
   </div>
 </template>
 
@@ -11,13 +11,13 @@
 import RoleConditions from '../components/roles/RoleConditions.vue'
 import RoleTable from '../components/roles/RoleTable.vue'
 import RoleDialog from '../components/roles/RoleDialog.vue'
-import SetPermissionDialog from '../components/roles/SetPermissionDialog.vue'
+import RolePermissionDialog from '../components/roles/RolePermissionDialog.vue'
 export default {
   components: {
     RoleConditions,
     RoleTable,
     RoleDialog,
-    SetPermissionDialog
+    RolePermissionDialog
   }
 }
 </script>

@@ -6,7 +6,7 @@ export const tableHandler = {
     }
   },
   methods: {
-    statusFormatter (row, column) {
+    statusFormatter (row) {
       return row.status === 1 ? '有效' : '无效'
     },
     handleSelectionChange (val) {
