@@ -19,7 +19,7 @@ export default {
   setQueryParams (state, params) {
     state.queryParams = params
     state.queryParams.page = 1
-    state.queryParams.limit = 8
+    state.queryParams.limit = 10
   },
   initializeCreateDialog (state) {
     state.tempItem = {}

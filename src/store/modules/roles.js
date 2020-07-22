@@ -8,7 +8,9 @@ export default {
     total: 0,
     queryParams: {
       page: 1,
-      limit: 10
+      limit: 10,
+      name: '',
+      status: ''
     },
     dialogVisible: false,
     rolePermissionDialogVisible: false,

@@ -55,7 +55,7 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="queryParams.page"
-      :page-sizes="[6, 10, 30, 40]"
+      :page-sizes="[10, 20, 30, 40]"
       :page-size="queryParams.limit"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"

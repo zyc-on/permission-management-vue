@@ -6,7 +6,7 @@ const deleteItem = (prefix, id) => http.delete(`/${prefix}/${id}`)
 
 const updateItem = (prefix, item) => http.put(`/${prefix}/${item.id}`, item)
 
-const fetchTableData = (prefix, params) => http.get(`/${prefix}/list`, { params })
+const fetchTableData = (prefix, params) => http.get(`/${prefix}/query`, { params })
 
 const fetchItemById = (prefix, id) => http.get(`/${prefix}/${id}`)
 

@@ -8,10 +8,12 @@ export default {
     total: 0,
     queryParams: {
       page: 1,
-      limit: 6,
+      limit: 10,
       name: '',
       username: '',
-      status: ''
+      status: '',
+      beginDate: '',
+      endDate: ''
     },
     dialogVisible: false,
     userRoleDialogVisible: true,

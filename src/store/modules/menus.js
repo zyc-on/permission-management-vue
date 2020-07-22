@@ -12,7 +12,10 @@ export default {
     total: 0,
     queryParams: {
       page: 1,
-      limit: 10
+      limit: 10,
+      name: '',
+      type: '',
+      status: ''
     },
     dialogVisible: false,
     tempItem: {},
@@ -27,7 +30,6 @@ export default {
   },
   actions: {
     ...commomActions,
-
     async getAllPermissions ({ commit }) {
       const res = await fetchAllPermissions()
       commit('setPermissions', res.data.data)
@@ -35,7 +37,7 @@ export default {
   },
   getters: {
     mapParentName: state => parentId => {
-      const item = state.tableData.find(e => e.id === parentId)
+      const item = state.permissions.find(e => e.id === parentId)
       return item && item.name ? item.name : '无'
     },
     treeData: state => {

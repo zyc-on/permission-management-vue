@@ -2,13 +2,14 @@ import { fetchTableData, deleteItem, createItem, fetchItemById, updateItem } fro
 
 export default {
   async getTableData ({ state, commit, dispatch }) {
-    // state.mapper && await dispatch('getMapper')
-
     const res = await fetchTableData(state.prefix, state.queryParams)
-    console.log(res)
-
+    console.log(res.data)
     commit('setTableData', res.data.data)
     commit('setTotal', res.data.total)
+
+    if (state.prefix === 'menu') {
+      await dispatch('getAllPermissions')
+    }
   },
 
   async deleteItemById ({ state, dispatch }, id) {
