@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
-import { fetchRoot, fetchChildren } from '../../api/menu'
+import { mapState } from 'vuex'
+import { fetchRoot, fetchChildren, fetchPermissionTree } from '../../api/menu'
 import { setRolePermission, fetchRolePermission } from '../../api/role'
 // import { resolveTreeData } from '../../store/utils/resolveTreeData'
 export default {
@@ -47,13 +47,12 @@ export default {
       treeProps: {
         label: 'name',
         children: 'children'
-      }
-      // treeData: []
+      },
+      treeData: []
     }
   },
   computed: {
     ...mapState('roles', ['targetRole']),
-    ...mapGetters('menus', ['treeData']),
     rolePermissionDialogVisible: {
       get () {
         return this.$store.state.roles.rolePermissionDialogVisible
@@ -64,12 +63,9 @@ export default {
     }
   },
   created () {
-    this.getAllPermissions()
-    // this.getTreeData()
+    this.getTreeData()
   },
   methods: {
-    ...mapActions('menus', ['getAllPermissions']),
-
     async onDialogOpen () {
       await this.initializeTreeCheckedKeys()
     },
@@ -83,10 +79,10 @@ export default {
       this.$refs.lazyTree.setCheckedKeys(data)
     },
 
-    // async getTreeData () {
-    //   const { data: { data } } = await fetchAllPermissions()
-    //   this.treeData = resolveTreeData(data)
-    // },
+    async getTreeData () {
+      const { data: { data } } = await fetchPermissionTree()
+      this.treeData = data
+    },
 
     // 懒加载树状结构数据
     async loadNode (node, resolve) {

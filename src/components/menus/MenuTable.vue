@@ -22,7 +22,6 @@
         label="上级菜单"
         width="90"
         align="center"
-        :formatter="parentFormatter"
       >
       </el-table-column>
       <el-table-column prop="type" :formatter="typeFormatter" label="菜单类型" width="90" align="center">
@@ -87,9 +86,6 @@ export default {
   methods: {
     ...mapMutations('menus', ['initializeCreateDialog']),
     ...mapActions('menus', ['getTableData', 'deleteItemById', 'initializeUpdateDialog']),
-    parentFormatter (row) {
-      return this.mapParentName(row.parentId)
-    },
     typeFormatter (row) {
       return ['目录', '菜单', '功能'].find((e, index) => index === row.type)
     }

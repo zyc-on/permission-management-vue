@@ -1,9 +1,9 @@
-import { fetchAllPermissions } from '../../api/menu'
+// import { fetchAllPermissions } from '../../api/menu'
 
 import commonMutations from '../utils/commonMutations'
 import commomActions from '../utils/commonActions'
 
-import { resolveTreeData } from '../utils/resolveTreeData'
+// import { resolveTreeData } from '../utils/resolveTreeData'
 
 export default {
   namespaced: true,
@@ -19,29 +19,29 @@ export default {
     },
     dialogVisible: false,
     tempItem: {},
-    prefix: 'menu',
-    permissions: []
+    prefix: 'menu'
+    // permissions: []
   },
   mutations: {
-    ...commonMutations,
-    setPermissions (state, permissions) {
-      state.permissions = permissions
-    }
+    ...commonMutations
+    // setPermissions (state, permissions) {
+    //   state.permissions = permissions
+    // }
   },
   actions: {
-    ...commomActions,
-    async getAllPermissions ({ commit }) {
-      const res = await fetchAllPermissions()
-      commit('setPermissions', res.data.data)
-    }
-  },
-  getters: {
-    mapParentName: state => parentId => {
-      const item = state.permissions.find(e => e.id === parentId)
-      return item && item.name ? item.name : '无'
-    },
-    treeData: state => {
-      return resolveTreeData(state.permissions)
-    }
+    ...commomActions
+    // async getAllPermissions ({ commit }) {
+    //   const res = await fetchAllPermissions()
+    //   commit('setPermissions', res.data.data)
+    // }
   }
+  // getters: {
+  //   mapParentName: state => parentId => {
+  //     const item = state.permissions.find(e => e.id === parentId)
+  //     return item && item.name ? item.name : '无'
+  //   },
+  //   treeData: state => {
+  //     return resolveTreeData(state.permissions)
+  //   }
+  // }
 }
