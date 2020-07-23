@@ -1,5 +1,6 @@
 import commonMutations from '../utils/commonMutations'
 import commonActions from '../utils/commonActions'
+import commonGetters from '../utils/commonGetters'
 
 export default {
   namespaced: true,
@@ -28,7 +29,13 @@ export default {
     targetUser: {
       id: '',
       name: ''
-    }
+    },
+
+    // 多选选中的用户
+    selectedItems: []
+  },
+  getters: {
+    ...commonGetters
   },
   mutations: {
     ...commonMutations,

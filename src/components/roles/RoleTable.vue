@@ -80,12 +80,12 @@
 </template>
 
 <script>
-import { tableHandler } from '../../mixins/tableHandler'
+import { statusFormatter } from '../../mixins/statusFormatter'
 import { paginationHandler } from '../../mixins/paginationHandler'
 import { deleteItem } from '../../mixins/deleteItem'
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
-  mixins: [tableHandler, deleteItem, paginationHandler],
+  mixins: [statusFormatter, deleteItem, paginationHandler],
   created () {
     this.getTableData()
   },
@@ -93,13 +93,16 @@ export default {
     ...mapState('roles', ['tableData', 'total', 'queryParams', 'prefix'])
   },
   methods: {
-    ...mapMutations('roles', ['initializeCreateDialog', 'initializeRolePermissionDialog']),
+    ...mapMutations('roles', ['initializeCreateDialog', 'initializeRolePermissionDialog', 'setSelectedItems']),
     ...mapActions('roles', [
       'getTableData',
       'deleteItemById',
       'insertItem',
       'initializeUpdateDialog'
-    ])
+    ]),
+    handleSelectionChange (val) {
+      this.setSelectedItems(val)
+    }
   }
 }
 </script>

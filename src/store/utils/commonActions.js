@@ -1,4 +1,4 @@
-import { fetchTableData, deleteItem, createItem, fetchItemById, updateItem } from '../../api/commonApi'
+import { fetchTableData, deleteItem, createItem, fetchItemById, updateItem, deleteItems } from '../../api/commonApi'
 
 export default {
   async getTableData ({ state, commit, dispatch }) {
@@ -25,6 +25,11 @@ export default {
 
   async updateItem ({ state, dispatch }, item) {
     await updateItem(state.prefix, item)
+    await dispatch('getTableData')
+  },
+
+  async deleteItemsByIds ({ state, dispatch }, ids) {
+    await deleteItems(state.prefix, ids)
     await dispatch('getTableData')
   }
 

@@ -10,10 +10,13 @@ const fetchTableData = (prefix, params) => http.get(`/${prefix}/query`, { params
 
 const fetchItemById = (prefix, id) => http.get(`/${prefix}/${id}`)
 
+const deleteItems = (prefix, ids) => http.delete(`/${prefix}/group`, { data: ids })
+
 export {
   createItem,
   deleteItem,
   updateItem,
   fetchTableData,
-  fetchItemById
+  fetchItemById,
+  deleteItems
 }

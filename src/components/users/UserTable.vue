@@ -69,11 +69,11 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 
 import { deleteItem } from '../../mixins/deleteItem'
 import { createOrUpdateItem } from '../../mixins/createOrUpdateItem'
-import { tableHandler } from '../../mixins/tableHandler'
+import { statusFormatter } from '../../mixins/statusFormatter'
 import { paginationHandler } from '../../mixins/paginationHandler'
 
 export default {
-  mixins: [tableHandler, deleteItem, createOrUpdateItem, paginationHandler],
+  mixins: [statusFormatter, deleteItem, createOrUpdateItem, paginationHandler],
   created () {
     this.getTableData()
   },
@@ -82,7 +82,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations('users', ['initializeCreateDialog', 'initializeUserRoleDialog']),
+    ...mapMutations('users', ['initializeCreateDialog', 'initializeUserRoleDialog', 'setSelectedItems']),
     ...mapActions('users', [
       'getTableData',
       'deleteItemById',
@@ -91,6 +91,9 @@ export default {
     ]),
     genderFormatter (row, column) {
       return row.gender === 1 ? '男' : row.gender === 0 ? '女' : '未知'
+    },
+    handleSelectionChange (val) {
+      this.setSelectedItems(val)
     }
   }
 }

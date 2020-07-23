@@ -71,12 +71,12 @@
 </template>
 
 <script>
-import { tableHandler } from '../../mixins/tableHandler'
+import { statusFormatter } from '../../mixins/statusFormatter'
 import { paginationHandler } from '../../mixins/paginationHandler'
 import { deleteItem } from '../../mixins/deleteItem'
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
-  mixins: [tableHandler, paginationHandler, deleteItem],
+  mixins: [statusFormatter, paginationHandler, deleteItem],
   created () {
     this.getTableData()
   },
@@ -84,10 +84,13 @@ export default {
     ...mapState('menus', ['tableData', 'total', 'queryParams', 'prefix'])
   },
   methods: {
-    ...mapMutations('menus', ['initializeCreateDialog']),
+    ...mapMutations('menus', ['initializeCreateDialog', 'setSelectedItems']),
     ...mapActions('menus', ['getTableData', 'deleteItemById', 'initializeUpdateDialog']),
     typeFormatter (row) {
       return ['目录', '菜单', '功能'].find((e, index) => index === row.type)
+    },
+    handleSelectionChange (val) {
+      this.setSelectedItems(val)
     }
   }
 }

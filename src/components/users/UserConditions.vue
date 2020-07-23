@@ -24,28 +24,31 @@
       >
       </el-date-picker>
     </el-form-item>
-    <el-button size="mini" @click="submit">查询</el-button>
+    <el-button size="mini" @click="submitQuery">查询</el-button>
     <el-button size="mini" @click="initializeCreateDialog">新增</el-button>
-    <el-button size="mini">删除</el-button>
+    <el-button size="mini" @click="submitDelete">删除</el-button>
   </el-form>
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+import { deleteItems } from '../../mixins/deleteItems'
 
 export default {
+  mixins: [deleteItems],
   data () {
     return {
       duration: ''
     }
   },
   computed: {
-    ...mapState('users', ['queryParams'])
+    ...mapState('users', ['queryParams']),
+    ...mapGetters('users', ['selectedIds'])
   },
   methods: {
     ...mapMutations('users', ['initializeCreateDialog', 'setQueryParams']),
-    ...mapActions('users', ['getTableData']),
-    async submit () {
+    ...mapActions('users', ['getTableData', 'deleteItemsByIds']),
+    async submitQuery () {
       if (this.duration) {
         this.queryParams.beginDate = this.duration[0]
         this.queryParams.endDate = this.duration[1]
@@ -55,6 +58,9 @@ export default {
       }
       this.setQueryParams(this.queryParams)
       await this.getTableData()
+    },
+    async submitDelete () {
+      await this.deleteItems(this.selectedIds)
     }
   }
 }

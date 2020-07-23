@@ -1,5 +1,6 @@
 import commonMutations from '../utils/commonMutations'
 import commonActions from '../utils/commonActions'
+import commonGetters from '../utils/commonGetters'
 
 export default {
   namespaced: true,
@@ -19,7 +20,13 @@ export default {
     targetRole: {
       id: '',
       name: ''
-    }
+    },
+
+    // 多选选中的角色
+    selectedItems: []
+  },
+  getters: {
+    ...commonGetters
   },
   mutations: {
     ...commonMutations,

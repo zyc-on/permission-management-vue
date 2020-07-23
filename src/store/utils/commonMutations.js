@@ -18,8 +18,6 @@ export default {
   },
   setQueryParams (state, params) {
     state.queryParams = params
-    state.queryParams.page = 1
-    state.queryParams.limit = 10
   },
   initializeCreateDialog (state) {
     state.tempItem = {}
@@ -28,5 +26,8 @@ export default {
   setUpdateItem (state, tempItem) {
     state.dialogVisible = true
     state.tempItem = tempItem
+  },
+  setSelectedItems (state, items) {
+    state.selectedItems = items
   }
 }

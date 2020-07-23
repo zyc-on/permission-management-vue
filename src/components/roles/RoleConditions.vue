@@ -10,22 +10,30 @@
         <el-option label="无效" value="0"></el-option>
       </el-select>
     </el-form-item>
-    <el-button size="mini" @click="submit">查询</el-button>
+    <el-button size="mini" @click="submitQuery">查询</el-button>
     <el-button size="mini" @click="initializeCreateDialog">新增</el-button>
-    <el-button size="mini">删除</el-button>
+    <el-button size="mini" @click="submitDelete">删除</el-button>
   </el-form>
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+import { deleteItems } from '../../mixins/deleteItems'
 export default {
-  computed: mapState('roles', ['queryParams']),
+  mixins: [deleteItems],
+  computed: {
+    ...mapState('roles', ['queryParams']),
+    ...mapGetters('roles', ['selectedIds'])
+  },
   methods: {
-    ...mapActions('roles', ['getTableData']),
+    ...mapActions('roles', ['getTableData', 'deleteItemsByIds']),
     ...mapMutations('roles', ['setQueryParams', 'initializeCreateDialog']),
-    async submit () {
+    async submitQuery () {
       this.setQueryParams(this.queryParams)
       await this.getTableData()
+    },
+    async submitDelete () {
+      await this.deleteItems(this.selectedIds)
     }
   }
 }
