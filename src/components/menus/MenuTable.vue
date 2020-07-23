@@ -18,7 +18,7 @@
       <el-table-column align="center" prop="name" label="菜单名称" width="90">
       </el-table-column>
       <el-table-column
-        prop="parentId"
+        prop="parentName"
         label="上级菜单"
         width="90"
         align="center"
@@ -72,16 +72,16 @@
 
 <script>
 import { tableHandler } from '../../mixins/tableHandler'
+import { paginationHandler } from '../../mixins/paginationHandler'
 import { deleteItem } from '../../mixins/deleteItem'
-import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
-  mixins: [tableHandler, deleteItem],
+  mixins: [tableHandler, paginationHandler, deleteItem],
   created () {
     this.getTableData()
   },
   computed: {
-    ...mapState('menus', ['tableData', 'total', 'queryParams', 'prefix']),
-    ...mapGetters('menus', ['mapParentName'])
+    ...mapState('menus', ['tableData', 'total', 'queryParams', 'prefix'])
   },
   methods: {
     ...mapMutations('menus', ['initializeCreateDialog']),

@@ -47,7 +47,7 @@
           <el-button size="mini" @click="toggleUserStatus(scope.row)">{{
             scope.row.status === 1 ? '无效' : '有效'
           }}</el-button>
-          <el-button size="mini">设置角色</el-button>
+          <el-button size="mini" @click="initializeUserRoleDialog(scope.row)">设置角色</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -70,9 +70,10 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 import { deleteItem } from '../../mixins/deleteItem'
 import { createOrUpdateItem } from '../../mixins/createOrUpdateItem'
 import { tableHandler } from '../../mixins/tableHandler'
+import { paginationHandler } from '../../mixins/paginationHandler'
 
 export default {
-  mixins: [tableHandler, deleteItem, createOrUpdateItem],
+  mixins: [tableHandler, deleteItem, createOrUpdateItem, paginationHandler],
   created () {
     this.getTableData()
   },
@@ -81,7 +82,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations('users', ['initializeCreateDialog']),
+    ...mapMutations('users', ['initializeCreateDialog', 'initializeUserRoleDialog']),
     ...mapActions('users', [
       'getTableData',
       'deleteItemById',

@@ -16,15 +16,31 @@ export default {
       endDate: ''
     },
     dialogVisible: false,
-    userRoleDialogVisible: true,
+    userRoleDialogVisible: false,
+
+    // 存储新增和修改对象的数据
     tempItem: {},
-    prefix: 'user'
+
+    // 确定请求地址的前缀 /user/*
+    prefix: 'user',
+
+    // 要设置角色的目标用户
+    targetUser: {
+      id: '',
+      name: ''
+    }
   },
   mutations: {
     ...commonMutations,
     closeUserRoleDialog (state) {
       state.userRoleDialogVisible = false
+    },
+    initializeUserRoleDialog (state, user) {
+      state.targetUser.id = user.id
+      state.targetUser.name = user.name
+      state.userRoleDialogVisible = true
     }
+
   },
   actions: {
     ...commonActions,

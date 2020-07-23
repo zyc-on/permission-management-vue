@@ -35,7 +35,6 @@
 import { mapState } from 'vuex'
 import { fetchRoot, fetchChildren, fetchPermissionTree } from '../../api/menu'
 import { setRolePermission, fetchRolePermission } from '../../api/role'
-// import { resolveTreeData } from '../../store/utils/resolveTreeData'
 export default {
   data () {
     return {

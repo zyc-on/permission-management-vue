@@ -6,10 +6,6 @@ export default {
     console.log(res.data)
     commit('setTableData', res.data.data)
     commit('setTotal', res.data.total)
-
-    if (state.prefix === 'menu') {
-      await dispatch('getAllPermissions')
-    }
   },
 
   async deleteItemById ({ state, dispatch }, id) {

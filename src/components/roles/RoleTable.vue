@@ -81,10 +81,11 @@
 
 <script>
 import { tableHandler } from '../../mixins/tableHandler'
+import { paginationHandler } from '../../mixins/paginationHandler'
 import { deleteItem } from '../../mixins/deleteItem'
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
-  mixins: [tableHandler, deleteItem],
+  mixins: [tableHandler, deleteItem, paginationHandler],
   created () {
     this.getTableData()
   },
