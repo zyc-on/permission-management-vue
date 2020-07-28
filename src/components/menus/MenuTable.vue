@@ -24,7 +24,13 @@
         align="center"
       >
       </el-table-column>
-      <el-table-column prop="type" :formatter="typeFormatter" label="菜单类型" width="90" align="center">
+      <el-table-column
+        prop="type"
+        :formatter="typeFormatter"
+        label="菜单类型"
+        width="90"
+        align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="identification"
@@ -45,15 +51,37 @@
         :formatter="statusFormatter"
       >
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button size="mini" @click="initializeCreateDialog">新增</el-button>
-          <el-button size="mini" @click="initializeUpdateDialog(scope.row.id)">修改</el-button>
-          <el-button
-            size="mini"
-            @click="deleteItem(scope.row.name, scope.row.id)"
-            >删除</el-button
-          >
+          <el-button-group>
+            <el-tooltip content="添加子级">
+              <el-button
+                size="small"
+                v-if="scope.row.type !== 2"
+                @click="initializeCreateDialog(scope.row)"
+                icon="el-icon-plus"
+                type="primary"
+              />
+            </el-tooltip>
+
+            <el-tooltip content="编辑">
+              <el-button
+                size="small"
+                @click="initializeUpdateDialog(scope.row.id)"
+                icon="el-icon-edit"
+                type="warning"
+              />
+            </el-tooltip>
+
+            <el-tooltip content="删除">
+              <el-button
+                size="small"
+                @click="deleteItem(scope.row.name, scope.row.id)"
+                icon="el-icon-delete"
+                type="danger"
+              />
+            </el-tooltip>
+          </el-button-group>
         </template>
       </el-table-column>
     </el-table>
@@ -85,7 +113,11 @@ export default {
   },
   methods: {
     ...mapMutations('menus', ['initializeCreateDialog', 'setSelectedItems']),
-    ...mapActions('menus', ['getTableData', 'deleteItemById', 'initializeUpdateDialog']),
+    ...mapActions('menus', [
+      'getTableData',
+      'deleteItemById',
+      'initializeUpdateDialog'
+    ]),
     typeFormatter (row) {
       return ['目录', '菜单', '功能'].find((e, index) => index === row.type)
     },

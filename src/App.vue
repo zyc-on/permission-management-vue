@@ -21,4 +21,7 @@ export default {
 #app{
   height: 100vh;
 }
+body .el-table th.gutter{
+display: table-cell!important;
+}
 </style>

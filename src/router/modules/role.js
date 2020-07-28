@@ -2,6 +2,6 @@ export default [
   {
     path: '/roles',
     name: 'Roles',
-    component: () => import('@/views/Roles')
+    component: () => import('@/views/RoleManagement')
   }
 ]

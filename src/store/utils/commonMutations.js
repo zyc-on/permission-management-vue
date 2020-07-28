@@ -19,8 +19,15 @@ export default {
   setQueryParams (state, params) {
     state.queryParams = params
   },
-  initializeCreateDialog (state) {
+  initializeCreateDialog (state, row) {
     state.tempItem = {}
+
+    // 新增权限的父级信息(临时)
+    if (row) {
+      state.tempItem.parentId = row.id
+      state.tempItem.type = row.type + 1
+    }
+
     state.dialogVisible = true
   },
   setUpdateItem (state, tempItem) {

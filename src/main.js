@@ -8,6 +8,8 @@ import './plugins/element.js'
 import './assets/iconfont/iconfont.css'
 import './assets/style/reset.scss'
 
+import './assets/style/colors.scss'
+
 Vue.config.productionTip = false
 
 new Vue({

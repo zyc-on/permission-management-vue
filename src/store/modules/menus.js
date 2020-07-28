@@ -1,7 +1,7 @@
-
 import commonMutations from '../utils/commonMutations'
 import commomActions from '../utils/commonActions'
 import commonGetters from '../utils/commonGetters'
+import { fetchPermissionTree } from '../../api/menu'
 
 export default {
   namespaced: true,
@@ -20,15 +20,26 @@ export default {
     prefix: 'menu',
 
     // 多选选中的菜单
-    selectedItems: []
+    selectedItems: [],
+
+    treeTableData: []
   },
   getters: {
     ...commonGetters
   },
   mutations: {
-    ...commonMutations
+    ...commonMutations,
+    setTreeTableData (state, data) {
+      state.treeTableData = data
+    }
   },
   actions: {
-    ...commomActions
+    ...commomActions,
+    async getTreeTableData ({ commit }) {
+      const {
+        data: { data }
+      } = await fetchPermissionTree()
+      commit('setTreeTableData', data)
+    }
   }
 }

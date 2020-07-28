@@ -3,6 +3,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import {
   Button,
+  ButtonGroup,
   Container,
   Aside,
   Header,
@@ -25,14 +26,20 @@ import {
   DatePicker,
   Dialog,
   Radio,
+  RadioGroup,
   MessageBox,
   Message,
   Tree,
-  Divider
+  Divider,
+  Tooltip
 } from 'element-ui'
+
+Input.props.clearable.default = true
+Tooltip.props.openDelay.default = 666
 
 const components = {
   Button,
+  ButtonGroup,
   Container,
   Aside,
   Header,
@@ -55,8 +62,10 @@ const components = {
   DatePicker,
   Dialog,
   Radio,
+  RadioGroup,
   Tree,
-  Divider
+  Divider,
+  Tooltip
 }
 
 Object.values(components).forEach(component => {

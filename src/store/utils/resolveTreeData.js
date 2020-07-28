@@ -3,6 +3,11 @@ export const resolveTreeData = data => {
   const branches = data.filter(e => e.type === 1)
   const leaves = data.filter(e => e.type === 2)
 
+  // 可能存在未分配上级的权限
+  // const unAssigned = [...leaves, ...branches].filter(
+  //   item => item.parentId === null
+  // )
+
   branches.forEach(branch => {
     branch.children = leaves.filter(leaf => leaf.parentId === branch.id)
   })
@@ -10,6 +15,8 @@ export const resolveTreeData = data => {
   roots.forEach(root => {
     root.children = branches.filter(branch => branch.parentId === root.id)
   })
+
+  // roots.push(...unAssigned)
 
   return roots
 }

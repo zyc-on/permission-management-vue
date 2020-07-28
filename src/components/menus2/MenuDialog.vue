@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="编辑菜单" :visible.sync="dialogVisible" center>
+  <el-dialog title="编辑菜单" :visible.sync="dialogVisible">
     <el-form :model="tempItem">
       <el-form-item label="菜单类型" label-width="72px">
         <el-radio-group v-model="tempItem.type" disabled>
@@ -10,22 +10,22 @@
       </el-form-item>
 
       <el-form-item label="上级菜单" label-width="72px">
-        <el-input v-model="tempItem.parentId" disabled />
+        <el-input disabled v-model="tempItem.parentId"></el-input>
       </el-form-item>
       <el-form-item label="菜单名称" label-width="72px">
-        <el-input v-model="tempItem.name" />
+        <el-input v-model="tempItem.name"></el-input>
       </el-form-item>
       <el-form-item label="菜单标识" label-width="72px">
-        <el-input v-model="tempItem.identification" />
+        <el-input v-model="tempItem.identification"></el-input>
       </el-form-item>
       <el-form-item label="菜单地址" label-width="72px">
-        <el-input v-model="tempItem.url" />
+        <el-input v-model="tempItem.url"></el-input>
       </el-form-item>
       <el-form-item label="图标" label-width="72px">
-        <el-input v-model="tempItem.icon" />
+        <el-input v-model="tempItem.icon"></el-input>
       </el-form-item>
       <el-form-item label="排序号" label-width="72px">
-        <el-input v-model="tempItem.sort" />
+        <el-input v-model="tempItem.sort"></el-input>
       </el-form-item>
       <el-form-item label="状态" label-width="72px">
         <el-radio v-model="tempItem.status" :label="1">有效</el-radio>
@@ -37,7 +37,7 @@
           :rows="2"
           v-model="tempItem.description"
           placeholder="请输入内容"
-         />
+        ></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

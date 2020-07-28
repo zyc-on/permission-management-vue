@@ -7,6 +7,6 @@ export default [
   {
     path: '/users',
     name: 'Users',
-    component: () => import('@/views/UsersRefactor')
+    component: () => import('@/views/UserManagement')
   }
 ]

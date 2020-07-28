@@ -1,7 +1,7 @@
 import { fetchTableData, deleteItem, createItem, fetchItemById, updateItem, deleteItems } from '../../api/commonApi'
 
 export default {
-  async getTableData ({ state, commit, dispatch }) {
+  async getTableData ({ state, commit }) {
     const res = await fetchTableData(state.prefix, state.queryParams)
     console.log(res.data)
     commit('setTableData', res.data.data)

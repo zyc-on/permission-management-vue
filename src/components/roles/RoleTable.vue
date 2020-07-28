@@ -15,16 +15,16 @@
       ></el-table-column>
       <el-table-column align="center" type="index" width="50" label="序号">
       </el-table-column>
-      <el-table-column align="center" prop="code" label="角色编码" width="90">
+      <el-table-column align="center" prop="code" label="角色编码" width="120">
       </el-table-column>
 
-      <el-table-column prop="name" label="角色名称" width="100" align="center">
+      <el-table-column prop="name" label="角色名称" width="130" align="center">
       </el-table-column>
 
       <el-table-column
         prop="validDate"
         label="生效日期"
-        width="130"
+        width="140"
         align="center"
       >
       </el-table-column>
@@ -32,7 +32,7 @@
       <el-table-column
         prop="expiredDate"
         label="失效日期"
-        width="130"
+        width="140"
         align="center"
       >
       </el-table-column>
@@ -48,21 +48,38 @@
       <el-table-column
         prop="description"
         label="备注"
-        width="126"
+        width="130"
         align="center"
       >
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button size="mini" @click="initializeUpdateDialog(scope.row.id)"
-            >修改</el-button
-          >
-          <el-button
-            size="mini"
-            @click="deleteItem(scope.row.name, scope.row.id)"
-            >删除</el-button
-          >
-          <el-button size="mini" @click="initializeRolePermissionDialog(scope.row)">设置角色权限</el-button>
+          <el-button-group>
+            <el-tooltip content="设置权限">
+              <el-button
+                size="small"
+                @click="initializeRolePermissionDialog(scope.row)"
+                type="primary"
+                icon="el-icon-key"
+              />
+            </el-tooltip>
+            <el-tooltip content="编辑角色">
+              <el-button
+                size="small"
+                @click="initializeUpdateDialog(scope.row.id)"
+                type="warning"
+                icon="el-icon-edit"
+            /></el-tooltip>
+
+            <el-tooltip content="删除角色">
+              <el-button
+                size="small"
+                @click="deleteItem(scope.row.name, scope.row.id)"
+                type="danger"
+                icon="el-icon-delete"
+              />
+            </el-tooltip>
+          </el-button-group>
         </template>
       </el-table-column>
     </el-table>
@@ -93,7 +110,11 @@ export default {
     ...mapState('roles', ['tableData', 'total', 'queryParams', 'prefix'])
   },
   methods: {
-    ...mapMutations('roles', ['initializeCreateDialog', 'initializeRolePermissionDialog', 'setSelectedItems']),
+    ...mapMutations('roles', [
+      'initializeCreateDialog',
+      'initializeRolePermissionDialog',
+      'setSelectedItems'
+    ]),
     ...mapActions('roles', [
       'getTableData',
       'deleteItemById',
