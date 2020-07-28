@@ -31,7 +31,9 @@ import {
   Message,
   Tree,
   Divider,
-  Tooltip
+  Tooltip,
+  Breadcrumb,
+  BreadcrumbItem
 } from 'element-ui'
 
 Input.props.clearable.default = true
@@ -65,7 +67,9 @@ const components = {
   RadioGroup,
   Tree,
   Divider,
-  Tooltip
+  Tooltip,
+  Breadcrumb,
+  BreadcrumbItem
 }
 
 Object.values(components).forEach(component => {

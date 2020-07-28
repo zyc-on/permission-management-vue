@@ -46,7 +46,7 @@
         :formatter="statusFormatter"
       />
     </el-table>
-        <div class="button-wrapper">
+    <div class="button-wrapper">
       <el-button type="primary" @click="updateUserRoles">确定</el-button>
       <el-button type="info" @click="userRoleDialogVisible = false"
         >取消</el-button

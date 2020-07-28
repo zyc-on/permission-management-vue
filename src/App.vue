@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <PageHeader />
     <Main />
 
   </div>
@@ -8,11 +7,9 @@
 
 <script>
 import Main from './views/Main.vue'
-import PageHeader from './views/PageHeader.vue'
 export default {
   components: {
-    Main,
-    PageHeader
+    Main
   }
 }
 </script>
