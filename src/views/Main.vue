@@ -47,7 +47,6 @@ export default {
 <style lang="scss">
 .app-container {
   display: flex;
-
   .inner-container {
     flex-grow: 1;
   }
