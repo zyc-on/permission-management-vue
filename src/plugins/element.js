@@ -33,7 +33,8 @@ import {
   Divider,
   Tooltip,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Popover
 } from 'element-ui'
 
 Input.props.clearable.default = true
@@ -69,7 +70,8 @@ const components = {
   Divider,
   Tooltip,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Popover
 }
 
 Object.values(components).forEach(component => {

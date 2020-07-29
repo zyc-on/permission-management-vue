@@ -51,6 +51,10 @@
         :formatter="statusFormatter"
       >
       </el-table-column>
+      <el-table-column prop="url" label="URL" width="70" align="center">
+      </el-table-column>
+      <el-table-column prop="component" label="组件" width="70" align="center">
+      </el-table-column>
       <el-table-column label="操作" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button-group>

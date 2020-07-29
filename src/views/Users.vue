@@ -171,15 +171,6 @@ export default {
         endTime: ''
       },
       user: {},
-      // user1: {
-      //   username: '',
-      //   password: '',
-      //   realName: '',
-      //   gender: '',
-      //   tel: '',
-      //   email: '',
-      //   status
-      // },
       dialogTitle: '创建用户',
       userDialogVisible: false,
       password2: ''

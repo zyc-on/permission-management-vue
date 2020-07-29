@@ -18,11 +18,25 @@
       <el-form-item label="菜单标识" label-width="72px">
         <el-input v-model="tempItem.identification" />
       </el-form-item>
-      <el-form-item label="菜单地址" label-width="72px">
-        <el-input v-model="tempItem.url" />
-      </el-form-item>
       <el-form-item label="图标" label-width="72px">
-        <el-input v-model="tempItem.icon" />
+        <el-popover placement="bottom-start" width="450" trigger="click">
+          <icon-select @selected="selectIcon" />
+          <el-input
+            slot="reference"
+            v-model="tempItem.icon"
+            placeholder="点击选择图标"
+            readonly
+          >
+            <i
+              v-if="tempItem.icon"
+              slot="prefix"
+              :class="tempItem.icon"
+              class="el-input__icon"
+              style="height: 32px;width: 16px;"
+            ></i>
+            <i v-else slot="prefix" class="el-icon-search el-input__icon" />
+          </el-input>
+        </el-popover>
       </el-form-item>
       <el-form-item label="排序号" label-width="72px">
         <el-input v-model="tempItem.sort" />
@@ -31,13 +45,19 @@
         <el-radio v-model="tempItem.status" :label="1">有效</el-radio>
         <el-radio v-model="tempItem.status" :label="0">无效</el-radio>
       </el-form-item>
+      <el-form-item label="URL" label-width="72px">
+        <el-input v-model="tempItem.url" />
+      </el-form-item>
+      <el-form-item label="组件名" label-width="72px">
+        <el-input v-model="tempItem.component" />
+      </el-form-item>
       <el-form-item label="备注" label-width="72px">
         <el-input
           type="textarea"
           :rows="2"
           v-model="tempItem.description"
           placeholder="请输入内容"
-         />
+        />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -50,7 +70,11 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { createOrUpdateItem } from '../../mixins/createOrUpdateItem'
+import IconSelect from '../../components/IconSelect'
 export default {
+  components: {
+    IconSelect
+  },
   mixins: [createOrUpdateItem],
 
   computed: {
@@ -66,7 +90,10 @@ export default {
   },
 
   methods: {
-    ...mapActions('menus', ['insertItem', 'updateItem'])
+    ...mapActions('menus', ['insertItem', 'updateItem']),
+    selectIcon (name) {
+      this.tempItem.icon = name
+    }
   }
 }
 </script>

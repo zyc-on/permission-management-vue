@@ -1,56 +1,60 @@
 <template>
-  <el-container>
-    <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-menu unique-opened router>
-        <el-menu-item index="home"
-          ><template slot="title"
-            ><i class="el-icon-house"></i>主页</template
-          ></el-menu-item
-        >
+  <div class="app-container">
+    <div class="app-aside">
+      <el-menu
+        class="aside-menu"
+        unique-opened
+        router
+        :collapse="fold"
+        :default-openeds="['2']"
+      >
+        <el-menu-item index="home">
+          <i class="el-icon-house"></i><span slot="title">主页</span>
+        </el-menu-item>
         <el-submenu index="2">
-          <template slot="title"><i class="el-icon-menu"></i>系统管理</template>
+          <template slot="title">
+            <i class="el-icon-menu"></i><span>系统管理</span>
+          </template>
           <el-menu-item index="users">用户管理</el-menu-item>
           <el-menu-item index="roles">角色管理</el-menu-item>
           <el-menu-item index="menus">菜单管理</el-menu-item>
         </el-submenu>
       </el-menu>
-    </el-aside>
-
-    <el-container>
-      <el-main>
+    </div>
+    <div class="inner-container">
+      <app-header @toggleMenu="fold = !fold" :fold="fold" />
+      <main>
         <router-view />
-      </el-main>
-    </el-container>
-  </el-container>
+      </main>
+    </div>
+  </div>
 </template>
 
 <script>
+import AppHeader from '../layout/AppHeader'
 export default {
+  components: {
+    AppHeader
+  },
   data () {
-    const item = {
-      date: '2016-05-02',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }
     return {
-      tableData: Array(20).fill(item)
+      fold: false
     }
   }
 }
 </script>
 
-<style>
-.el-container {
-  height: 92%;
-  border: 1px solid #eee;
-}
-.el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  line-height: 60px;
+<style lang="scss">
+.app-container {
+  display: flex;
+
+  .inner-container {
+    flex-grow: 1;
+  }
 }
 
-.el-aside {
-  color: #333;
+.aside-menu:not(.el-menu--collapse) {
+  width: 180px;
+  height: 100vh;
 }
 </style>

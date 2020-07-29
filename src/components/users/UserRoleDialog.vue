@@ -47,7 +47,9 @@
       />
     </el-table>
     <div class="button-wrapper">
-      <el-button type="primary" @click="updateUserRoles">确定</el-button>
+      <el-button type="primary" @click="updateUserRoles" :loading="loading"
+        >确定</el-button
+      >
       <el-button type="info" @click="userRoleDialogVisible = false"
         >取消</el-button
       >
@@ -65,7 +67,8 @@ export default {
   data () {
     return {
       roles: [],
-      selectedRoles: []
+      selectedRoles: [],
+      loading: false
     }
   },
   created () {
@@ -88,6 +91,7 @@ export default {
       set () {
         this.$store.commit('users/closeUserRoleDialog')
         this.$refs.userRoleTable.clearSelection()
+        this.loading = false
       }
     }
   },
@@ -100,6 +104,7 @@ export default {
       this.roles = data
     },
     async updateUserRoles () {
+      this.loading = true
       await setUserRoles(this.targetUser.id, this.selectedRoleIds)
       this.userRoleDialogVisible = false
     },

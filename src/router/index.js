@@ -17,10 +17,6 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/test',
-    component: () => import('../layout/components/navbar')
   }
 ]
 
