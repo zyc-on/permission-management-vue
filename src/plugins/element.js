@@ -34,7 +34,8 @@ import {
   Tooltip,
   Breadcrumb,
   BreadcrumbItem,
-  Popover
+  Popover,
+  Card
 } from 'element-ui'
 
 Input.props.clearable.default = true
@@ -71,7 +72,8 @@ const components = {
   Tooltip,
   Breadcrumb,
   BreadcrumbItem,
-  Popover
+  Popover,
+  Card
 }
 
 Object.values(components).forEach(component => {

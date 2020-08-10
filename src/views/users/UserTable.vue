@@ -37,7 +37,7 @@
         <template slot-scope="scope" class="test">
           <div>
             <el-button-group>
-              <el-tooltip content="设置角色">
+              <el-tooltip content="设置角色" v-if="canSet">
                 <el-button
                   size="small"
                   @click="initializeUserRoleDialog(scope.row)"
@@ -45,7 +45,7 @@
                   type="primary"
               /></el-tooltip>
 
-              <el-tooltip content="切换状态">
+              <el-tooltip content="切换状态" v-if="canEdit">
                 <el-button
                   size="small"
                   @click="toggleUserStatus(scope.row)"
@@ -53,7 +53,7 @@
                   type="info"
               /></el-tooltip>
 
-              <el-tooltip content="编辑用户">
+              <el-tooltip content="编辑用户" v-if="canEdit">
                 <el-button
                   size="small"
                   @click="initializeUpdateDialog(scope.row.id)"
@@ -61,7 +61,7 @@
                   type="warning"
               /></el-tooltip>
 
-              <el-tooltip content="删除用户">
+              <el-tooltip content="删除用户" v-if="canDelete">
                 <el-button
                   size="small"
                   @click="deleteItem(scope.row.name, scope.row.id)"
@@ -94,11 +94,21 @@ import { deleteItem } from '../../mixins/deleteItem'
 import { createOrUpdateItem } from '../../mixins/createOrUpdateItem'
 import { statusFormatter } from '../../mixins/statusFormatter'
 import { paginationHandler } from '../../mixins/paginationHandler'
+import { tableButtonControl } from '../../mixins/tableButtonControl'
 
 export default {
-  mixins: [statusFormatter, deleteItem, createOrUpdateItem, paginationHandler],
+  data () {
+    return {
+      // canEdit: false,
+      // canCreate: false,
+      // canDelete: false,
+      // canSet: false
+    }
+  },
+  mixins: [statusFormatter, deleteItem, createOrUpdateItem, paginationHandler, tableButtonControl],
   created () {
     this.getTableData()
+    // this.initializeTableButton()
   },
   computed: {
     ...mapState('users', ['tableData', 'total', 'queryParams', 'prefix'])
@@ -122,6 +132,13 @@ export default {
     handleSelectionChange (val) {
       this.setSelectedItems(val)
     }
+    // initializeTableButton () {
+    //   const permissions = JSON.parse(sessionStorage.getItem('permissions'))
+    //   this.canCreate = permissions.some(p => p.authority.includes(`${this.prefix}:create`))
+    //   this.canEdit = permissions.some(p => p.authority.includes(`${this.prefix}:update`))
+    //   this.canDelete = permissions.some(p => p.authority.includes(`${this.prefix}:delete`))
+    //   this.canSet = permissions.some(p => p.authority.includes(`${this.prefix}:set`))
+    // }
   }
 }
 </script>

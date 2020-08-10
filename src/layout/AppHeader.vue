@@ -31,8 +31,8 @@
               个人中心
             </el-dropdown-item>
           </router-link>
-          <span style="display:block;">
-            <el-dropdown-item divided>
+          <span style="display:block;" @click="handleLogout">
+            <el-dropdown-item divided >
               退出登录
             </el-dropdown-item>
           </span>
@@ -48,6 +48,12 @@ export default {
     fold: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    handleLogout () {
+      sessionStorage.clear()
+      this.$router.push('/login')
     }
   }
 }
@@ -77,6 +83,7 @@ span.brand{
       font-size: 22px;
       color: #5a5e66;
       cursor: pointer;
+      transition: transform .3s ease-in-out;
     }
 
     &:hover {

@@ -1,13 +1,13 @@
 <template>
-  <el-form :inline="true" :model="queryParams" size="small">
+  <el-form :inline="true" @keyup.enter.native="submitQuery" :model="queryParams" size="small">
     <el-form-item label="用户名">
-      <el-input v-model="queryParams.username" placeholder="用户名"></el-input>
+      <el-input v-model="queryParams.username"></el-input>
     </el-form-item>
-    <el-form-item label="姓名">
+    <el-form-item label="姓名" class="condition-input">
       <el-input v-model="queryParams.name" placeholder="用户名"></el-input>
     </el-form-item>
     <el-form-item label="状态">
-      <el-select v-model="queryParams.status" placeholder="全部">
+      <el-select v-model="queryParams.status" @change="submitQuery" placeholder="全部">
         <el-option label="全部" value=""></el-option>
         <el-option label="有效" value="1"></el-option>
         <el-option label="无效" value="0"></el-option>
@@ -25,24 +25,27 @@
       </el-date-picker>
     </el-form-item>
     <el-button size="mini" @click="submitQuery">查询</el-button>
-    <el-button size="mini" @click="initializeCreateDialog">新增</el-button>
-    <el-button size="mini" @click="submitDelete">删除</el-button>
+    <el-button size="mini" @click="initializeCreateDialog" v-if="canCreate">新增</el-button>
+    <el-button size="mini" @click="submitDelete" v-if="canDelete">删除</el-button>
   </el-form>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 import { deleteItems } from '../../mixins/deleteItems'
+import { conditionButtonControl } from '../../mixins/conditionButtonControl'
 
 export default {
-  mixins: [deleteItems],
+  mixins: [deleteItems, conditionButtonControl],
   data () {
     return {
       duration: ''
+      // canDelete: false,
+      // canCreate: false
     }
   },
   computed: {
-    ...mapState('users', ['queryParams']),
+    ...mapState('users', ['queryParams', 'prefix']),
     ...mapGetters('users', ['selectedIds'])
   },
   methods: {
@@ -62,8 +65,17 @@ export default {
     async submitDelete () {
       await this.deleteItems(this.selectedIds)
     }
+    // initializeTableButton () {
+    //   const permissions = JSON.parse(sessionStorage.getItem('permissions'))
+    //   this.canCreate = permissions.some(p =>
+    //     p.authority.includes('user:create')
+    //   )
+    //   this.canDelete = permissions.some(p =>
+    //     p.authority.includes('user:delete')
+    //   )
+    // }
   }
 }
 </script>
 
-<style></style>
+<style scoped></style>

@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import MenuConditions from '../components/menus/MenuConditions.vue'
-import MenuTable from '../components/menus/MenuTable.vue'
-import MenuDialog from '../components/menus/MenuDialog.vue'
+import MenuConditions from './MenuConditions.vue'
+import MenuTable from './MenuTable.vue'
+import MenuDialog from './MenuDialog.vue'
 export default {
   components: {
     MenuConditions,

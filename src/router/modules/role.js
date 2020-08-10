@@ -1,7 +1,7 @@
 export default [
   {
-    path: '/roles',
+    path: 'roles',
     name: 'Roles',
-    component: () => import('@/views/RoleManagement')
+    component: () => import('@/views/roles/index.vue')
   }
 ]

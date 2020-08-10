@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import RoleConditions from '../components/roles/RoleConditions.vue'
-import RoleTable from '../components/roles/RoleTable.vue'
-import RoleDialog from '../components/roles/RoleDialog.vue'
-import RolePermissionDialog from '../components/roles/RolePermissionDialog.vue'
+import RoleConditions from './RoleConditions.vue'
+import RoleTable from './RoleTable.vue'
+import RoleDialog from './RoleDialog.vue'
+import RolePermissionDialog from './RolePermissionDialog.vue'
 export default {
   components: {
     RoleConditions,

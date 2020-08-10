@@ -1,11 +1,12 @@
 export default [
   {
-    path: '/menus',
+    path: 'menus',
     name: 'Menus',
-    component: () => import('@/views/MenuManagement')
-  }, {
-    path: '/menus2',
-    name: 'Test',
-    component: () => import('@/views/MenuManagement2')
+    component: () => import('@/views/menus/index.vue')
   }
+  // {
+  //   path: 'menus2',
+  //   name: 'Test',
+  //   component: () => import('@/views/menus/MenuManagement2.vue'),
+  // },
 ]

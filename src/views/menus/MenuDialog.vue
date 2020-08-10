@@ -69,8 +69,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { createOrUpdateItem } from '../../mixins/createOrUpdateItem'
-import IconSelect from '../../components/IconSelect'
+import { createOrUpdateItem } from '@/mixins/createOrUpdateItem'
+import IconSelect from '@/components/IconSelect'
 export default {
   components: {
     IconSelect

@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import UserConditions from '@/components/users/UserConditions.vue'
-import UserTable from '@/components/users/UserTable.vue'
-import UserDialog from '@/components/users/UserDialog.vue'
-import UserRoleDialog from '@/components/users/UserRoleDialog.vue'
+import UserConditions from './UserConditions.vue'
+import UserTable from './UserTable.vue'
+import UserDialog from './UserDialog.vue'
+import UserRoleDialog from './UserRoleDialog.vue'
 export default {
   components: {
     UserConditions,

@@ -1,12 +1,7 @@
 export default [
-  // {
-  //   path: '/users',
-  //   name: 'Users',
-  //   component: () => import('@/views/Users')
-  // },
   {
-    path: '/users',
+    path: 'users',
     name: 'Users',
-    component: () => import('@/views/UserManagement')
+    component: () => import('@/views/users/index.vue')
   }
 ]

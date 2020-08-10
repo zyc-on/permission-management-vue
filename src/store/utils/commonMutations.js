@@ -26,7 +26,7 @@ export default {
     if (row) {
       state.tempItem.parentId = row.id
       state.tempItem.type = row.type + 1
-      state.tempItem.url = row.url + '/'
+      // state.tempItem.url = row.url + '/'
     }
 
     state.dialogVisible = true

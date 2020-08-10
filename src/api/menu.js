@@ -6,4 +6,6 @@ const fetchRoot = () => http.get('/menu/root')
 
 const fetchChildren = parentId => http.get('/menu/children', { params: { parentId } })
 
-export { fetchPermissionTree, fetchRoot, fetchChildren }
+const fetchAsideMenus = () => http.get('/menu/aside')
+
+export { fetchPermissionTree, fetchRoot, fetchChildren, fetchAsideMenus }

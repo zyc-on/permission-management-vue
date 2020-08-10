@@ -35,11 +35,14 @@
       <el-table-column
         prop="identification"
         label="菜单标识"
-        width="90"
+        width="130"
         align="center"
       >
       </el-table-column>
       <el-table-column prop="icon" label="图标" width="136" align="center">
+        <template slot-scope="scope">
+          <i :class="scope.row.icon"></i>
+        </template>
       </el-table-column>
       <el-table-column prop="sort" label="排序号" width="70" align="center">
       </el-table-column>
@@ -51,14 +54,14 @@
         :formatter="statusFormatter"
       >
       </el-table-column>
-      <el-table-column prop="url" label="URL" width="70" align="center">
+      <el-table-column prop="url" label="URL" width="100" align="center">
       </el-table-column>
       <el-table-column prop="component" label="组件" width="70" align="center">
       </el-table-column>
       <el-table-column label="操作" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button-group>
-            <el-tooltip content="添加子级">
+            <el-tooltip content="添加子级" v-if="canCreate">
               <el-button
                 size="small"
                 v-if="scope.row.type !== 2"
@@ -68,7 +71,7 @@
               />
             </el-tooltip>
 
-            <el-tooltip content="编辑">
+            <el-tooltip content="编辑" v-if="canEdit">
               <el-button
                 size="small"
                 @click="initializeUpdateDialog(scope.row.id)"
@@ -77,7 +80,7 @@
               />
             </el-tooltip>
 
-            <el-tooltip content="删除">
+            <el-tooltip content="删除" v-if="canDelete">
               <el-button
                 size="small"
                 @click="deleteItem(scope.row.name, scope.row.id)"
@@ -106,9 +109,10 @@
 import { statusFormatter } from '../../mixins/statusFormatter'
 import { paginationHandler } from '../../mixins/paginationHandler'
 import { deleteItem } from '../../mixins/deleteItem'
+import { tableButtonControl } from '../../mixins/tableButtonControl'
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
-  mixins: [statusFormatter, paginationHandler, deleteItem],
+  mixins: [statusFormatter, paginationHandler, deleteItem, tableButtonControl],
   created () {
     this.getTableData()
   },
